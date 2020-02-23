@@ -4,7 +4,7 @@
 
 | Name | 
 | ------ |
-| Anny Shi | 
+| Yunan Shi(Anny) | 
 | Aviral Verma | 
 | Faris Ally | 
 
