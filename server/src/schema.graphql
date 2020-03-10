@@ -1,0 +1,30 @@
+scalar DateTime
+
+scalar Upload
+
+type Query {
+  info: String!
+}
+
+type Error {
+  path: String!
+  message: String!
+}
+
+type Mutation {
+  signup(email: String!, password: String!, name: String!): [Error!]
+  login(email: String!, password: String!): AuthPayload
+  uploadAudio(file: Upload!): Boolean
+}
+
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
