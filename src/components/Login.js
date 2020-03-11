@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { AUTH_TOKEN } from '../constants'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
+import "../styles/Login.css"
 
 const SIGNUP_MUTATION = gql`
   mutation SignupMutation($email: String!, $password: String!, $name: String!) {
@@ -30,6 +31,7 @@ class Login extends Component {
     error: '',
   }
 
+  
   render() {
     const { login, email, password, name } = this.state
     return (
@@ -62,8 +64,8 @@ class Login extends Component {
         <Mutation
     mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
     variables={{ email, password, name }}
-    onCompleted={data => this.props.history.push(`/`)}
-    //onError={error => this.setState({error: "Error"})}
+    onCompleted={login ? data => this._handleLogIn(data) : data => this._handleSignUp(data)}
+    onError={error => this.setState({error: "Error"})}
     >
     {mutation => (
       <div className="pointer mr2 button" onClick={mutation}>
@@ -82,9 +84,36 @@ class Login extends Component {
     )
   }
 
+  _handleLogIn = async data => {
+    console.log(data);
+    if(!data.signup) {
+      this.props.history.push(`/`)
+    }
+    // else {
+    //   let error = data[0].message;
+
+    // }
+
+  }
+
+  _handleSignUp = async data => {
+    console.log(data);
+    if(!data.signup) {
+      this.props.history.push(`/`)
+    }
+    else {
+      let errorMessage = data.signup[0].message;
+      let error_box = document.getElementById('error_box')
+      error_box.innerHTML = errorMessage
+
+    }
+
+  }
+
+
   _confirm = async data => {
-    const { token } = this.state.login ? data.login : data.signup
-    this._saveUserData(token)
+    // const { token } = this.state.login ? data.login : data.signup
+    // this._saveUserData(token)
     this.props.history.push(`/`)
   }
 

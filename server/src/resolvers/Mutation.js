@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken')
 const { APP_SECRET, getUserId } = require('../utils')
 const {createWriteStream} = require("fs")
 
-let Datastore = require('nedb');
-let users = new Datastore({ filename: 'db/users.db', autoload: true})
-let audio = new Datastore({ filename: 'db/audio.db', autoload: true});
+let Datastore = require('nedb-promises');
+let users = Datastore.create({ filename: 'db/users.db', autoload: true})
+let audio = Datastore.create({ filename: 'db/audio.db', autoload: true});
 
 
 // This function taken from: https://www.youtube.com/watch?v=KQ_ty4A6Nsc
@@ -31,31 +31,56 @@ async function signup(parent, args, context) {
   const username = args.name;
   const email = args.email;
 
-  users.findOne({_id: username}, function(err, user) {
-    if (err) {
-      throw new Error('Something went wrong...')
-    }
-    if (user) {
-      return [
-        {
-          path: "username",
-          message: "username " + username + " already taken"
-        }
-      ]
-    }
-    users.update({_id: username},{_id: username, hash: password, email: email}, {upsert: true}, function(err){
-      if (err) {
-        throw new Error('Something went wrong...')
+  let user = await users.findOne({_id: username})
+  console.log(user);
+
+
+  if (user) {
+    console.log("I exist")
+    return [
+      {
+        path: "username",
+        message: "username " + username + " already taken"
       }
-    //const token = jwt.sign({ userId: username }, APP_SECRET)
-  
-      return null
-    })
-  })
+    ] 
+  }
 
-
-  
+  else {
+    console.log("Updating DB")
+    await users.insert({_id: username, hash: password, email: email})
 }
+
+  return null
+}
+
+// async function signup(parent, args, context) {
+//   const password = await bcrypt.hash(args.password, 10);
+//   const username = args.name;
+//   const email = args.email;
+
+//   users.findOne({_id: username}, function(err, user) {
+//     if (err) {
+//       throw new Error('Something went wrong...')
+//     }
+//     if (user) {
+//       console.log("I found an error")
+//       return [
+//         {
+//           path: "username",
+//           message: "username " + username + " already taken"
+//         }
+//       ]
+//     }
+//     users.update({_id: username},{_id: username, hash: password, email: email}, {upsert: true}, function(err){
+//       if (err) {
+//         throw new Error('Something went wrong...')
+//       }
+//     //const token = jwt.sign({ userId: username }, APP_SECRET)
+  
+//       return null
+//     })
+//   })  
+// }
 
 async function login(parent, args, context) {
   const user = await context.prisma.user({ email: args.email })
