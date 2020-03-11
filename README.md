@@ -1,5 +1,15 @@
 # CSCC09 Project
 
+## How to Run
+1. Install yarn, if not installed already
+2. Checkout the code from the repo, and make a new branch if developing
+3. Navigate into the project folder, and run `yarn install` to install the dependencies
+4. Then navigate into the server folder, and run `yarn install` to install the backend dependencies
+5. In the server folder, run `yarn start`. This should start the server on localhost:4000, and will open a GraphQL playground where queries can be executed.
+6. Open another terminal, and in the main project folder, run `yarn start`, this will start the app on localhost:3000.
+
+
+
 ## Team Members
 
 | Name | 
