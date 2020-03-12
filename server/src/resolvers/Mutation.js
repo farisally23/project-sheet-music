@@ -28,13 +28,11 @@ async function uploadAudio(parent, {name, title, file}) {
   // need to find a workaround, like replacing same file names
   let fileExists = await audio.findOne({title: fileTitle, owner: owner}) 
   if (fileExists) {
-    console.log("I Exist")
     return false;
   }
 
   else {
     // Store the file in the db
-    console.log("HELLO")
     await audio.insert({owner: owner, title: fileTitle, filename: uniqueFileName})
     await storeUpload({stream, uniqueFileName});
     return true;
@@ -47,11 +45,10 @@ async function uploadAudio(parent, {name, title, file}) {
 
 async function signup(parent, args, context) {
   const password = await bcrypt.hash(args.password, 10);
-  const username = args.name;
+  const username = args.username;
   const email = args.email;
 
   let user = await users.findOne({_id: username})
-  console.log(user);
 
 
   if (user) {
@@ -100,21 +97,46 @@ async function signup(parent, args, context) {
 // }
 
 async function login(parent, args, context) {
-  const user = await context.prisma.user({ email: args.email })
-  if (!user) {
-    throw new Error('No such user found')
-  }
 
-  const valid = await bcrypt.compare(args.password, user.password)
+  console.log(args)
+
+  const user = await users.findOne({_id: args.username})
+  console.log(args.username)
+  console.log(user)
+  const valid = await bcrypt.compare(args.password, user.hash)
+
   if (!valid) {
-    throw new Error('Invalid password')
+    return [
+      {
+        path: "password",
+        message: "incorrect password"
+      }
+    ] 
   }
 
-  return {
-    token: jwt.sign({ userId: user.id }, APP_SECRET),
-    user,
+  else {
+    // Authenticate user
+    //await users.insert({_id: username, hash: password, email: email})
+    return null
   }
 }
+
+//   return null
+//   const user = await context.prisma.user({ email: args.email })
+//   if (!user) {
+//     throw new Error('No such user found')
+//   }
+
+//   const valid = await bcrypt.compare(args.password, user.password)
+//   if (!valid) {
+//     throw new Error('Invalid password')
+//   }
+
+//   return {
+//     token: jwt.sign({ userId: user.id }, APP_SECRET),
+//     user,
+//   }
+// }
 
 
 module.exports = {

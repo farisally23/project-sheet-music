@@ -5,8 +5,8 @@ import gql from 'graphql-tag'
 import "../styles/Login.css"
 
 const SIGNUP_MUTATION = gql`
-  mutation SignupMutation($email: String!, $password: String!, $name: String!) {
-    signup(email: $email, password: $password, name: $name) {
+  mutation SignupMutation($email: String!, $password: String!, $username: String!) {
+    signup(email: $email, password: $password, username: $username) {
       path
       message
     }
@@ -14,8 +14,8 @@ const SIGNUP_MUTATION = gql`
 `
 
 const LOGIN_MUTATION = gql`
-  mutation LoginMutation($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
+  mutation LoginMutation($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
       path
       message
     }
@@ -27,32 +27,32 @@ class Login extends Component {
     login: true, // switch between Login and SignUp
     email: '',
     password: '',
-    name: '',
+    username: '',
     error: '',
   }
 
   
   render() {
-    const { login, email, password, name } = this.state
+    const { login, email, password, username } = this.state
     return (
       <div>
         <h4 className="mv3">{login ? 'Login' : 'Sign Up'}</h4>
         <div className="flex flex-column">
           <div id="error_box"></div>
+          <input
+            value={username}
+            onChange={e => this.setState({ username: e.target.value })}
+            type="text"
+            placeholder="Your username"
+          />
           {!login && (
             <input
-              value={name}
-              onChange={e => this.setState({ name: e.target.value })}
+              value={email}
+              onChange={e => this.setState({ email: e.target.value })}
               type="text"
-              placeholder="Your name"
+              placeholder="Your email address"
             />
           )}
-          <input
-            value={email}
-            onChange={e => this.setState({ email: e.target.value })}
-            type="text"
-            placeholder="Your email address"
-          />
           <input
             value={password}
             onChange={e => this.setState({ password: e.target.value })}
@@ -63,7 +63,7 @@ class Login extends Component {
         <div className="flex mt3">
         <Mutation
     mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
-    variables={{ email, password, name }}
+    variables={{ email, password, username }}
     onCompleted={login ? data => this._handleLogIn(data) : data => this._handleSignUp(data)}
     onError={error => this.setState({error: "Error"})}
     >
@@ -86,15 +86,17 @@ class Login extends Component {
 
   _handleLogIn = async data => {
     console.log(data);
-    if(!data.signup) {
+    if(!data.login) {
       //TEMPORARY SOLUTION, NEED TO CHANGE ONCE SESSISONS ARE INTRODUCED
-      localStorage.setItem('currentUser', this.state.name);
+      localStorage.setItem('currentUser', this.state.username);
       this.props.history.push(`/`)
     }
-    // else {
-    //   let error = data[0].message;
+    else {
+      let errorMessage = data.login[0].message;
+      let error_box = document.getElementById('error_box')
+      error_box.innerHTML = errorMessage
 
-    // }
+    }
 
   }
 
@@ -102,7 +104,7 @@ class Login extends Component {
     console.log(data);
     if(!data.signup) {
       //TEMPORARY SOLUTION, NEED TO CHANGE ONCE SESSISONS ARE INTRODUCED
-      localStorage.setItem('currentUser', this.state.name);
+      localStorage.setItem('currentUser', this.state.username);
       this.props.history.push(`/`)
     }
     else {
