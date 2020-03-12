@@ -3,9 +3,7 @@ const jwt = require('jsonwebtoken')
 const { APP_SECRET, getUserId } = require('../utils')
 const {createWriteStream} = require("fs")
 
-let Datastore = require('nedb-promises');
-let users = Datastore.create({ filename: 'db/users.db', autoload: true})
-let audio = Datastore.create({ filename: 'db/audio.db', autoload: true});
+let {users, audio} = require("./Database.js")
 
 
 // This function taken from: https://www.youtube.com/watch?v=KQ_ty4A6Nsc
@@ -21,7 +19,6 @@ async function uploadAudio(parent, {name, title, file}) {
   const fileTitle = await title;
   const owner = await name;
   const uniqueFileName = await owner + fileTitle + ".mp3"
-  const path =  './' + uniqueFileName
   const {stream, filename} = await file;
 
   // Check if user already has a file with this name
@@ -38,7 +35,7 @@ async function uploadAudio(parent, {name, title, file}) {
   else {
     // Store the file in the db
     console.log("HELLO")
-    await audio.insert({owner: owner, title: fileTitle, path: path})
+    await audio.insert({owner: owner, title: fileTitle, filename: uniqueFileName})
     await storeUpload({stream, uniqueFileName});
     return true;
   }

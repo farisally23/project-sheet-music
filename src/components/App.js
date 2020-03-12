@@ -4,7 +4,8 @@ import { Switch, Route } from 'react-router-dom'
 import Login from './Login'
 import AudioUpload from './AudioUpload'
 import Homepage from './Homepage'
-import PlayAudio from './PlayAudio'
+import Recordings from './Recordings'
+import AudioElement from './AudioElement'
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           <Switch>
           <Route exact path="/" component={Homepage} />
             <Route exact path="/upload" component={AudioUpload} />
+            <Route exact path="/recordings" component={Recordings}/>
             <Route exact path="/login" component={Login} />
           </Switch>
         </div>

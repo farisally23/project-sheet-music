@@ -1,3 +1,4 @@
+let {users, audio} = require("./Database.js")
 // async function feed(parent, args, context) {
 //   const count = await context.prisma
 //     .linksConnection({
@@ -26,6 +27,20 @@
 //     links,
 //   }
 // }
+
+async function getUserFiles(parent, args, context) {
+    console.log("I executed")
+    const username = args.username;
+
+    let userFiles = await audio.find({owner: username})
+    console.log(userFiles);
+
+    return userFiles
+}
+
+module.exports = {
+    getUserFiles,
+  }
 
 // module.exports = {
 //   feed,

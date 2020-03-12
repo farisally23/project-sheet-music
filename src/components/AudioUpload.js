@@ -3,7 +3,6 @@ import "../styles/AudioUpload.css"
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 import ReactAudioPlayer from 'react-audio-player';
-import mp3_file from "./water.mp3"
 
 
 const UPLOAD_AUDIO = gql`

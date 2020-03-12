@@ -20,6 +20,18 @@ class Header extends Component {
                     upload
                   </Link>
                 </div>
+                <div className="flex">
+                  <div className="ml1">|</div>
+                  <Link to="/recordings" className="ml1 no-underline black">
+                    recordings
+                  </Link>
+                </div>
+                <div className="flex">
+                  <div className="ml1">|</div>
+                  <Link to="/test" className="ml1 no-underline black">
+                    test
+                  </Link>
+                </div>
             </div>
             <div className="flex flex-fixed">
               {authToken ? (
