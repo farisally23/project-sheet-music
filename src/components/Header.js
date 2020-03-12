@@ -22,14 +22,8 @@ class Header extends Component {
                 </div>
                 <div className="flex">
                   <div className="ml1">|</div>
-                  <Link to="/recordings" className="ml1 no-underline black">
-                    recordings
-                  </Link>
-                </div>
-                <div className="flex">
-                  <div className="ml1">|</div>
-                  <Link to="/test" className="ml1 no-underline black">
-                    test
+                  <Link to="/explore" className="ml1 no-underline black">
+                    explore
                   </Link>
                 </div>
             </div>

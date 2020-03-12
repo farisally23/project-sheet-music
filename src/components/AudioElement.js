@@ -4,11 +4,6 @@ import { Mutation, Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
 
-// THIS IS HOW TO PLAY AUDIO
-{/* <audio ref={(green) => { this.green = green; }}>
-              <source src={`${require('../uploads/water.mp3')}`} type="audio/mpeg" >
-              </source>
-          </audio>  */}
 class AudioElement extends Component {
     
     state = {}
@@ -23,6 +18,7 @@ class AudioElement extends Component {
               <source src={source}  type="audio/mpeg" >
               </source>
           </audio>
+        <div>Posted by {this.props.file.owner}</div>
           </div>
         )
       }

@@ -3,6 +3,7 @@ import "../styles/AudioUpload.css"
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 import ReactAudioPlayer from 'react-audio-player';
+import Recordings from './Recordings'
 
 
 const UPLOAD_AUDIO = gql`
@@ -43,9 +44,9 @@ class AudioUpload extends Component {
 
             <div id="audio_content">
                 <div id="upload_area">Upload audio here:
-                    <input type="text" name ="title" class="field" placeholder="Name this file" id="file_name"
+                    <input type="text" name ="title" className="field" placeholder="Name this file" id="file_name"
                     onChange={e => this.setState({ currentTitle: e.target.value })} required/>
-                    <input type="file" name="audio" class="field" id="audio_file" accept="audio/*" 
+                    <input type="file" name="audio" className="field" id="audio_file" accept="audio/*" 
                     onChange={e => this.setState({ currentFile: e.target.files[0] })} required/>
                     <div>
                     <Mutation
@@ -61,13 +62,10 @@ class AudioUpload extends Component {
                     </div>
                 </div>
                 <div id="recordings">My Recordings:
-                    <div class="record">
-                        <div class="filename">File1</div>
-                        <button onClick={this.playAudio} class="play_button">Play!</button>
-                    </div>
+                <Recordings></Recordings>
                 </div>
+                
             </div>
-
         </div>
         )
     }

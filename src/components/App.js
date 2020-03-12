@@ -5,7 +5,7 @@ import Login from './Login'
 import AudioUpload from './AudioUpload'
 import Homepage from './Homepage'
 import Recordings from './Recordings'
-import AudioElement from './AudioElement'
+import AudioFeed from './AudioFeed'
 
 class App extends Component {
   render() {
@@ -16,7 +16,7 @@ class App extends Component {
           <Switch>
           <Route exact path="/" component={Homepage} />
             <Route exact path="/upload" component={AudioUpload} />
-            <Route exact path="/recordings" component={Recordings}/>
+            <Route exact path="/explore" component={AudioFeed}/>
             <Route exact path="/login" component={Login} />
           </Switch>
         </div>

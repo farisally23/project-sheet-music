@@ -5,6 +5,7 @@ scalar Upload
 type Query {
   info: String!
   getUserFiles(username: String!): [UploadedFile!]
+  getAllFiles(username: String!): [UploadedFile!]
 }
 
 type UploadedFile {
