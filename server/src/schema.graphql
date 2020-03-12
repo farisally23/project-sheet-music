@@ -14,7 +14,7 @@ type Error {
 type Mutation {
   signup(email: String!, password: String!, name: String!): [Error!]
   login(email: String!, password: String!): AuthPayload
-  uploadAudio(file: Upload!): Boolean
+  uploadAudio(name: String!, title: String!, file: Upload!): Boolean
 }
 
 

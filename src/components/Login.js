@@ -87,6 +87,8 @@ class Login extends Component {
   _handleLogIn = async data => {
     console.log(data);
     if(!data.signup) {
+      //TEMPORARY SOLUTION, NEED TO CHANGE ONCE SESSISONS ARE INTRODUCED
+      localStorage.setItem('currentUser', this.state.name);
       this.props.history.push(`/`)
     }
     // else {
@@ -99,6 +101,8 @@ class Login extends Component {
   _handleSignUp = async data => {
     console.log(data);
     if(!data.signup) {
+      //TEMPORARY SOLUTION, NEED TO CHANGE ONCE SESSISONS ARE INTRODUCED
+      localStorage.setItem('currentUser', this.state.name);
       this.props.history.push(`/`)
     }
     else {

@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import Login from './Login'
 import AudioUpload from './AudioUpload'
 import Homepage from './Homepage'
+import PlayAudio from './PlayAudio'
 
 class App extends Component {
   render() {
