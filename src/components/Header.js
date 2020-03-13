@@ -6,7 +6,7 @@ import { AUTH_TOKEN } from '../constants'
 class Header extends Component {
     render() {
         // Token that tells us if user is logged in
-        const authToken = localStorage.getItem(AUTH_TOKEN)
+        const loggedIn = localStorage.getItem('currentUser')
         return (
           <div className="flex pa1 justify-between nowrap orange">
             <div className="flex flex-fixed black">
@@ -20,14 +20,20 @@ class Header extends Component {
                     upload
                   </Link>
                 </div>
+                <div className="flex">
+                  <div className="ml1">|</div>
+                  <Link to="/explore" className="ml1 no-underline black">
+                    explore
+                  </Link>
+                </div>
             </div>
             <div className="flex flex-fixed">
-              {authToken ? (
+              {loggedIn ? (
                 // If authenticated, show logout button
                 <div
                   className="ml1 pointer black"
                   onClick={() => {
-                    localStorage.removeItem(AUTH_TOKEN)
+                    localStorage.removeItem('currentUser')
                     this.props.history.push(`/`)
                   }}
                 >

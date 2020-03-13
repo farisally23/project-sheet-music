@@ -1,3 +1,4 @@
+let {users, audio} = require("./Database.js")
 // async function feed(parent, args, context) {
 //   const count = await context.prisma
 //     .linksConnection({
@@ -26,6 +27,27 @@
 //     links,
 //   }
 // }
+
+async function getUserFiles(parent, args, context) {
+    const username = args.username;
+
+    let userFiles = await audio.find({owner: username})
+
+    return userFiles
+}
+
+async function getAllFiles(parent, args, context) {
+  const username = args.username;
+  let allAudio = await audio.find({owner : {$ne: username}}).limit(10)
+  console.log(allAudio)
+
+  return allAudio
+}
+
+module.exports = {
+    getUserFiles,
+    getAllFiles
+  }
 
 // module.exports = {
 //   feed,

@@ -4,6 +4,15 @@ scalar Upload
 
 type Query {
   info: String!
+  getUserFiles(username: String!): [UploadedFile!]
+  getAllFiles(username: String!): [UploadedFile!]
+}
+
+type UploadedFile {
+  _id: String!
+  title: String!
+  owner: String!
+  filename: String!
 }
 
 type Error {
@@ -12,9 +21,9 @@ type Error {
 }
 
 type Mutation {
-  signup(email: String!, password: String!, name: String!): [Error!]
-  login(email: String!, password: String!): AuthPayload
-  uploadAudio(file: Upload!): Boolean
+  signup(email: String!, password: String!, username: String!): [Error!]
+  login(username: String!, password: String!): [Error!]
+  uploadAudio(name: String!, title: String!, file: Upload!): Boolean
 }
 
 
