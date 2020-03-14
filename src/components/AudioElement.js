@@ -18,7 +18,6 @@ class AudioElement extends Component {
               <source src={source}  type="audio/mpeg" >
               </source>
           </audio>
-        <div>Posted by {this.props.file.owner}</div>
           </div>
         )
       }

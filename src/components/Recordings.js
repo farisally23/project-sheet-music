@@ -27,13 +27,12 @@ class Recordings extends Component {
     render() {
         return (
           <Query query={GET_FILES}
-        variables={{username: localStorage.getItem('currentUser')}}>
+        variables={{username: this.props.user}}>
             {({ loading, error, data }) => {
               if (loading) return <div>Fetching</div>
               if (error) return <div>Error</div>
         
               const userSavedFiles = data.getUserFiles
-              console.log(data)
         
               return (
                 <div>

@@ -41,6 +41,32 @@ async function uploadAudio(parent, {name, title, file}) {
   
 }
 
+async function addFriend(parent, args, context) {
+  const username = args.username;
+  const friend = args.friend;
+
+  // Check if user exists
+  let user = await users.findOne({username: username})
+  let usersFriends = user.friends
+
+  // Check if friend exists
+  let friendExists = await users.findOne({username: friend})
+  if (!friendExists) {
+    return [
+      {
+        path: "friend",
+        message: "The user you are trying to friend does not exist"
+      }
+    ] 
+  }
+  else {
+    //add friend and update DB
+    usersFriends.push(friend)
+    await users.update({username: username}, {friends: usersFriends})
+  }
+  return null;
+}
+
 
 
 async function signup(parent, args, context) {
@@ -48,7 +74,7 @@ async function signup(parent, args, context) {
   const username = args.username;
   const email = args.email;
 
-  let user = await users.findOne({_id: username})
+  let user = await users.findOne({username: username})
 
 
   if (user) {
@@ -61,7 +87,7 @@ async function signup(parent, args, context) {
   }
 
   else {
-    await users.insert({_id: username, hash: password, email: email})
+    await users.insert({username: username, hash: password, email: email, friends: []})
 }
 
   return null
@@ -100,7 +126,7 @@ async function login(parent, args, context) {
 
   console.log(args)
 
-  const user = await users.findOne({_id: args.username})
+  const user = await users.findOne({username: args.username})
   console.log(args.username)
   console.log(user)
   const valid = await bcrypt.compare(args.password, user.hash)

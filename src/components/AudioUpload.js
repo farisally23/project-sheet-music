@@ -24,20 +24,24 @@ class AudioUpload extends Component {
         let audioInput = document.getElementById("audio_file")
         if (audioInput) {
             let file = audioInput.files[0];
-            console.log(file);
             return file;
         }
     }
 
     playAudio() {
         const myAudio = new Audio("./water.mp3");
-        console.log(myAudio)
         myAudio.play();
     }
 
 
     render() {
         const { currentFile } = this.state
+        const state = this.props.location.state
+        let user = ''
+        if (state !== undefined) {
+            user = state.user
+        }
+
         return (
         <div id="audio_container">
             <div id="audio_title">Create a new recording</div>
@@ -62,7 +66,7 @@ class AudioUpload extends Component {
                     </div>
                 </div>
                 <div id="recordings">My Recordings:
-                <Recordings></Recordings>
+                <Recordings user={user}></Recordings>
                 </div>
                 
             </div>

@@ -20,7 +20,7 @@ query($username: String!) {
               <source src={`${require('../uploads/water.mp3')}`} type="audio/mpeg" >
               </source>
           </audio> */
-class Recordings extends Component {
+class AudioFeed extends Component {
     
     state = {}
 
@@ -33,11 +33,14 @@ class Recordings extends Component {
               if (error) return <div>Error</div>
         
               const allAudio = data.getAllFiles
-              console.log(data)
         
               return (
                 <div>
-                  {allAudio.map(file => <AudioElement key={file._id} file={file}/>)}
+                  {allAudio.map(file => 
+                  <div key={file._id}>
+                    <AudioElement file={file}/>
+                    Posted by {file.owner}
+                  </div>)}
                 </div>
               )
             }}
@@ -46,4 +49,4 @@ class Recordings extends Component {
       }
   }
 
-  export default Recordings
+  export default AudioFeed

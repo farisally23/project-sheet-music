@@ -6,6 +6,7 @@ type Query {
   info: String!
   getUserFiles(username: String!): [UploadedFile!]
   getAllFiles(username: String!): [UploadedFile!]
+  getUsersFriends(username: String!): [User!]
 }
 
 type UploadedFile {
@@ -24,6 +25,7 @@ type Mutation {
   signup(email: String!, password: String!, username: String!): [Error!]
   login(username: String!, password: String!): [Error!]
   uploadAudio(name: String!, title: String!, file: Upload!): Boolean
+  addFriend(username: String!, friend: String!): [Error!]
 }
 
 
@@ -33,7 +35,7 @@ type AuthPayload {
 }
 
 type User {
-  id: ID!
-  name: String!
+  _id: ID!
+  username: String!
   email: String!
 }
