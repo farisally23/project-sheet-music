@@ -38,6 +38,12 @@ class Header extends Component {
                     add friend
                   </Link>
                 </div>
+                <div className="flex">
+                  <div className="ml1">|</div>
+                  <Link to="/sounds" className="ml1 no-underline black">
+                    Sound
+                  </Link>
+                </div>
             </div>
             <div className="flex flex-fixed">
               {loggedIn ? (

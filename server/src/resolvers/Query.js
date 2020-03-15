@@ -36,23 +36,38 @@ async function getUserFiles(parent, args, context) {
     return userFiles
 }
 
-async function getAllFiles(parent, args, context) {
+async function getFriendsFiles(parent, args, context) {
   const username = args.username;
-  let allAudio = await audio.find({owner : {$ne: username}}).limit(10)
+
+  const user = await users.find({username: username})
+  if (!user) {
+    return null
+  }
+
+  console.log(user)
+
+  const usersFriends = await user[0].friends
+  let allAudio = await audio.find({owner : {$in: usersFriends}}).limit(10)
 
   return allAudio
 }
 
 async function getUsersFriends(parent, args, context) {
   const username = args.username;
-  let friends = await users.find({username : {$ne: username}}, {hash: 0})
-  console.log(friends)
-  return friends
+  let user = await users.find({username : username})
+  if (!user) {
+    return null
+  }
+  else {
+    let usersFriends = user[0].friends
+    let friends = await users.find({username: {$in: usersFriends}})
+    return friends
+  }
 }
 
 module.exports = {
     getUserFiles,
-    getAllFiles,
+    getFriendsFiles,
     getUsersFriends
   }
 

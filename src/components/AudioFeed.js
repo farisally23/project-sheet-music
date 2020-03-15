@@ -6,7 +6,7 @@ import AudioElement from './AudioElement'
 
 const GET_FILES = gql`
 query($username: String!) {
-  getAllFiles(username: $username) {
+  getFriendsFiles(username: $username) {
       _id
       title
       owner
@@ -26,13 +26,16 @@ class AudioFeed extends Component {
 
     render() {
         return (
+          <div>
+          <h1>Explore</h1>
+          <h3>Your friends audio will show up here:</h3>
           <Query query={GET_FILES}
         variables={{username: localStorage.getItem('currentUser')}}>
             {({ loading, error, data }) => {
               if (loading) return <div>Fetching</div>
               if (error) return <div>Error</div>
         
-              const allAudio = data.getAllFiles
+              const allAudio = data.getFriendsFiles
         
               return (
                 <div>
@@ -45,6 +48,7 @@ class AudioFeed extends Component {
               )
             }}
           </Query>
+          </div>
         )
       }
   }

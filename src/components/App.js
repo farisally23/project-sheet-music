@@ -9,6 +9,7 @@ import AudioFeed from './AudioFeed'
 import Friends from './Friends'
 import Profile from './Profile'
 import AddFriend from './AddFriend'
+import EditSound from './EditSound'
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route exact path="/explore" component={AudioFeed}/>
             <Route exact path="/friends" component={Friends}/>
             <Route exact path="/addfriend" component={AddFriend}/>
+            <Route exact path="/sounds" component={EditSound}/>
             <Route exact path="/profile" component={Profile}/>
             <Route exact path="/login" component={Login} />
           </Switch>

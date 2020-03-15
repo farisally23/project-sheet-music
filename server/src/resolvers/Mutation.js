@@ -45,6 +45,7 @@ async function addFriend(parent, args, context) {
   const username = args.username;
   const friend = args.friend;
 
+
   // Check if user exists
   let user = await users.findOne({username: username})
   let usersFriends = user.friends
@@ -55,14 +56,22 @@ async function addFriend(parent, args, context) {
     return [
       {
         path: "friend",
-        message: "The user you are trying to friend does not exist"
+        message: "The user '" + friend + "' does not exist" 
+      }
+    ] 
+  }
+  else if (usersFriends.includes(friend)) {
+    return [
+      {
+        path: "friend",
+        message: "You and " + friend + " are already friends"
       }
     ] 
   }
   else {
     //add friend and update DB
     usersFriends.push(friend)
-    await users.update({username: username}, {friends: usersFriends})
+    await users.update({username: username}, {$set: { friends: usersFriends }})
   }
   return null;
 }
@@ -124,11 +133,7 @@ async function signup(parent, args, context) {
 
 async function login(parent, args, context) {
 
-  console.log(args)
-
   const user = await users.findOne({username: args.username})
-  console.log(args.username)
-  console.log(user)
   const valid = await bcrypt.compare(args.password, user.hash)
 
   if (!valid) {
@@ -169,4 +174,5 @@ module.exports = {
   uploadAudio,
   signup,
   login,
+  addFriend
 }
