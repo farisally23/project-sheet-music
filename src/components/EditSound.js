@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import "../styles/AudioUpload.css"
+import "../styles/EditAudio.css"
 import { Query } from 'react-apollo'
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import gql from 'graphql-tag'
@@ -19,21 +19,19 @@ class EditSound extends Component {
 
     state = {
         loaded: false,
-        audio: null
+        audio: null,
+        volume: 10
     }
 
     componentDidMount() { 
         let currentComponent = this;
-        // var sound = new Pizzicato.Sound({ 
-        //     source: 'file',
-        //     options: { path: require('../uploads/asploosh.mp3') }
-        // })
+        //props.location.state.filename originated from AudioElement.js
+        const source = require("../uploads/" + this.props.location.state.filename)
 
         var sound = new Pizzicato.Sound({ 
             source: 'file',
-            options: { path: require('../uploads/asploosh.mp3') }
+            options: { path: source }
         }, function() {
-            console.log('sound file loaded!');
             currentComponent.setState({audio: sound})
             currentComponent.setState({loaded: true})
         });
@@ -43,13 +41,11 @@ class EditSound extends Component {
 
     // Takes a Pizzicato sound object and plays it
     playAudio() {
-        console.log("Im running")
         const audio = this.state.audio
         audio.play();
     }
 
     pauseAudio() {
-        console.log("Im running")
         const audio = this.state.audio
         audio.pause();
     }
@@ -59,16 +55,23 @@ class EditSound extends Component {
     
         const {loaded, audio} = this.state
 
- 
         return (
             
             <div>
                 {loaded ?
                 <div>
                 <button onClick={this.playAudio}>Click to Play</button>
-            <button onClick={this.pauseAudio}>Pause</button>
-            </div>: 
-            <div>loading</div>}
+                <button onClick={this.pauseAudio}>Pause</button>
+                <div class="slidecontainer">
+                    <label for="volume_slider">Volume</label>
+                    <input type="range" id="volume_slider" class="slider" name="volume_slider" min="0" max="10"
+                        onChange={e => this.setState({ volume: e.target.value })}/>
+                    <div>{this.state.volume}</div>
+                </div>
+            </div>
+            
+            // Not loaded
+            :<div>loading</div>}
             </div>
             
         )

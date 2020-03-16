@@ -23,7 +23,7 @@ class App extends Component {
             <Route exact path="/explore" component={AudioFeed}/>
             <Route exact path="/friends" component={Friends}/>
             <Route exact path="/addfriend" component={AddFriend}/>
-            <Route exact path="/sounds" component={EditSound}/>
+            <Route exact path="/edit" component={EditSound}/>
             <Route exact path="/profile" component={Profile}/>
             <Route exact path="/login" component={Login} />
           </Switch>
