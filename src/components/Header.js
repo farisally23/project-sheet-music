@@ -16,7 +16,7 @@ class Header extends Component {
               </Link>
                 <div className="flex">
                   <div className="ml1">|</div>
-                  <Link to="/upload" className="ml1 no-underline black">
+                  <Link to={{pathname: "/upload", state: {user: loggedIn}}} className="ml1 no-underline black">
                     upload
                   </Link>
                 </div>
@@ -24,6 +24,18 @@ class Header extends Component {
                   <div className="ml1">|</div>
                   <Link to="/explore" className="ml1 no-underline black">
                     explore
+                  </Link>
+                </div>
+                <div className="flex">
+                  <div className="ml1">|</div>
+                  <Link to="/friends" className="ml1 no-underline black">
+                    friends
+                  </Link>
+                </div>
+                <div className="flex">
+                  <div className="ml1">|</div>
+                  <Link to="/addfriend" className="ml1 no-underline black">
+                    add friend
                   </Link>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import "../styles/AudioUpload.css"
 import { Mutation, Query } from 'react-apollo'
 import gql from 'graphql-tag'
+import { Link } from 'react-router-dom'
 
 
 class AudioElement extends Component {
@@ -18,7 +19,7 @@ class AudioElement extends Component {
               <source src={source}  type="audio/mpeg" >
               </source>
           </audio>
-        <div>Posted by {this.props.file.owner}</div>
+          <Link to={{pathname: "/edit", state: {filename: filename}}}>Edit</Link>
           </div>
         )
       }

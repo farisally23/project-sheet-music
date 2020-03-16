@@ -6,6 +6,10 @@ import AudioUpload from './AudioUpload'
 import Homepage from './Homepage'
 import Recordings from './Recordings'
 import AudioFeed from './AudioFeed'
+import Friends from './Friends'
+import Profile from './Profile'
+import AddFriend from './AddFriend'
+import EditSound from './EditSound'
 
 class App extends Component {
   render() {
@@ -17,6 +21,10 @@ class App extends Component {
           <Route exact path="/" component={Homepage} />
             <Route exact path="/upload" component={AudioUpload} />
             <Route exact path="/explore" component={AudioFeed}/>
+            <Route exact path="/friends" component={Friends}/>
+            <Route exact path="/addfriend" component={AddFriend}/>
+            <Route exact path="/edit" component={EditSound}/>
+            <Route exact path="/profile" component={Profile}/>
             <Route exact path="/login" component={Login} />
           </Switch>
         </div>
