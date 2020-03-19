@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './styles/index.css'
 import App from './components/App'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom'
@@ -12,6 +11,8 @@ import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import {createUploadLink} from 'apollo-upload-client';
 
+import("./bootstrap.js")
+  .catch(e => console.error("Error importing `bootstrap.js`:", e));
 
 // 2 - CREATE UPLOAD LINK
 const uploadLink = createUploadLink({
