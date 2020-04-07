@@ -19,7 +19,7 @@ class AudioElement extends Component {
               <source src={source}  type="audio/mpeg" >
               </source>
           </audio>
-          <Link to={{pathname: "/edit", state: {filename: filename}}}>Edit</Link>
+          <Link to={{pathname: "/edit", state: {filename: filename}}}>More</Link>
           </div>
         )
       }

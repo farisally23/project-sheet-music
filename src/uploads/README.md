@@ -1,1 +1,1 @@
-The uploads folder must be in this location.
+The uploads folder must be in this location
