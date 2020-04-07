@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import gql from 'graphql-tag'
 import Profile from './Profile'
 import Script from 'react-load-script'
-import {Howl, Howler} from 'howler';
 import Pizzicato from 'pizzicato'
 
 
@@ -20,7 +19,9 @@ class EditSound extends Component {
     state = {
         loaded: false,
         audio: null,
-        volume: 10
+        volume: 10,
+        frequency: 10,
+        peak: 10
     }
 
     componentDidMount() { 
@@ -67,6 +68,16 @@ class EditSound extends Component {
                     <input type="range" id="volume_slider" class="slider" name="volume_slider" min="0" max="10"
                         onChange={e => this.setState({ volume: e.target.value })}/>
                     <div>{this.state.volume}</div>
+
+                    <label for="frequency_slider">Frequency</label>
+                    <input type="range" id="frequency_slider" class="slider" name="frequency_slider" min="0" max="10"
+                        onChange={e => this.setState({ frequency: e.target.value })}/>
+                    <div>{this.state.frequency}</div>
+
+                    <label for="peak_slider">Peak</label>
+                    <input type="range" id="peak_slider" class="slider" name="peak_slider" min="0" max="10"
+                        onChange={e => this.setState({ peak: e.target.value })}/>
+                    <div>{this.state.peak}</div>
                 </div>
             </div>
             

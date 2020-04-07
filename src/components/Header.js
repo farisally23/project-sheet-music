@@ -39,6 +39,19 @@ class Header extends Component {
                   </Link>
                 </div>
             </div>
+
+            <div>
+              {loggedIn ? (
+                // If authenticated, show a welcome message
+                <div className="ml1 pointer black">
+                  Hi {loggedIn}
+                </div>
+                // Else, show nothing
+              ) : (
+                <div></div>
+              )}
+            </div>
+
             <div className="flex flex-fixed">
               {loggedIn ? (
                 // If authenticated, show logout button

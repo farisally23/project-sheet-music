@@ -15,11 +15,6 @@ query($username: String!) {
 }
 `
 
-// THIS IS HOW TO PLAY AUDIO
-/* <audio ref={(green) => { this.green = green; }}>
-              <source src={`${require('../uploads/water.mp3')}`} type="audio/mpeg" >
-              </source>
-          </audio> */
 class AudioFeed extends Component {
     
     state = {}
