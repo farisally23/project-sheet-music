@@ -28,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "cd server && yarn install && yarn start"
+    "heroku-postbuild": "cd server && yarn && yarn build"
   },
 "proxy": "http://localhost:4000",
   "eslintConfig": {

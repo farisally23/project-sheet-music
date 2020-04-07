@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+"build": "webpack"
+
   },
   "dependencies": {
     "apollo-server": "^2.11.0",
