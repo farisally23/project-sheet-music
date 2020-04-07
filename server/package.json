@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node src/index.js",
-"build": "yarn run build"
+"build": "webpack --config webpack.dev.js"
 
   },
   "dependencies": {
