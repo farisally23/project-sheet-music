@@ -15,7 +15,7 @@ import {createUploadLink} from 'apollo-upload-client';
 
 // 2 - CREATE UPLOAD LINK
 const uploadLink = createUploadLink({
-  uri: 'http://localhost:4000'
+  uri: '/'
 })
 
 // 3
