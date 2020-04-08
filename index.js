@@ -1,6 +1,8 @@
 const { GraphQLServer } = require('graphql-yoga')
 const Query = require('./src/resolvers/Query')
 const Mutation = require('./src/resolvers/Mutation')
+const express = require('express')
+const path = require('path')
 //const User = require('./resolvers/User')
 
 const resolvers = {
@@ -16,4 +18,14 @@ const server = new GraphQLServer({
     ...request,
   }),
 })
+
+
+server.express.use(express.static(path.join(__dirname, 'client/build')))
+
+
+server.express.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'))
+})
+
+
 server.start(() => console.log(`Server is running on http://localhost:4000`))
