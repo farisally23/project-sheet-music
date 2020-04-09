@@ -1,6 +1,6 @@
 const { GraphQLServer } = require('graphql-yoga')
-const Query = require('./resolvers/Query')
-const Mutation = require('./resolvers/Mutation')
+const Query = require('./src/resolvers/Query')
+const Mutation = require('./src/resolvers/Mutation')
 const express = require('express')
 const path = require('path')
 //const User = require('./resolvers/User')
@@ -20,11 +20,11 @@ const server = new GraphQLServer({
 })
 
 
-server.express.use(express.static(path.join(__dirname, 'client/public')))
+server.express.use(express.static(path.join(__dirname, 'client/build')))
 
 
 server.express.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/public/index.html'))
+  res.sendFile(path.join(__dirname + '/client/build/index.html'))
 })
 
 
