@@ -1,3 +1,0 @@
-{"username":"new","hash":"$2a$10$diPcBvLFN7hThkK43EXLt.yAJNfPDZyS4ED2dBbtrRiESj/ShYH5e","email":"new","friends":["bob"],"_id":"2b98Hg0eCU2BMtyj","createdAt":{"$$date":1586380883052},"updatedAt":{"$$date":1586380914013}}
-{"username":"bob","hash":"$2a$10$y2mdxIvgczs2jQ5HcLP47ub50Yr/5c.sw185Dar8Td70Wz0kAzRSm","email":"bob","friends":["faris"],"_id":"RGHPrhNnE323P6eC","createdAt":{"$$date":1586377739652},"updatedAt":{"$$date":1586377745150}}
-{"username":"faris","hash":"$2a$10$GdgZ6G/hDnJAFprQGRERb.abQWNBpfH4mZ1ci4ZMW7p/2hb99GLkC","email":"faris","friends":[],"_id":"s2SZrxU0RkJVTJ7o","createdAt":{"$$date":1586377718706},"updatedAt":{"$$date":1586377718706}}

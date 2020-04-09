@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/index.js",
     "heroku-postbuild": "cd client && yarn && yarn build"
   },
   "dependencies": {

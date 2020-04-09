@@ -9,7 +9,7 @@ let {users, audio} = require("./Database.js")
 // This function taken from: https://www.youtube.com/watch?v=KQ_ty4A6Nsc
 const storeUpload = ({stream, uniqueFileName}) =>
   new Promise((resolve, reject) =>
-    stream.pipe(createWriteStream("../src/uploads/" + uniqueFileName))
+    stream.pipe(createWriteStream("./client/src/uploads/" + uniqueFileName))
     .on("finish", resolve)
     .on("error", reject)
     );
@@ -19,7 +19,8 @@ async function uploadAudio(parent, {name, title, file}) {
   const fileTitle = await title;
   const owner = await name;
   const uniqueFileName = await owner + fileTitle + ".mp3"
-  const {stream, filename} = await file;
+  const { createReadStream, filename, mimetype } = await file;
+  const stream = createReadStream()
 
   // Check if user already has a file with this name
   // This will currently throw an error and crash the server if user
@@ -33,8 +34,8 @@ async function uploadAudio(parent, {name, title, file}) {
 
   else {
     // Store the file in the db
-    await audio.insert({owner: owner, title: fileTitle, filename: uniqueFileName})
     await storeUpload({stream, uniqueFileName});
+    await audio.insert({owner: owner, title: fileTitle, filename: uniqueFileName})
     return true;
   }
 
