@@ -20,12 +20,12 @@ const server = new GraphQLServer({
 })
 
 
-// server.express.use(express.static(path.join(__dirname, 'client/build')))
+server.express.use(express.static(path.join(__dirname, 'client/build')))
 
 
-// server.express.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname + '/client/build/index.html'))
-// })
+server.express.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'))
+})
 
 
 server.start(() => console.log(`Server is running on http://localhost:4000`))
