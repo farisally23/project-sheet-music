@@ -20,11 +20,11 @@ const server = new GraphQLServer({
 })
 
 
-server.express.use(express.static(path.join(__dirname, 'client/build')))
+server.express.use(express.static(path.join(__dirname, 'client/public')))
 
 
 server.express.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/build/index.html'))
+  res.sendFile(path.join(__dirname + '/client/public/index.html'))
 })
 
 
