@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import "../styles/RecordSound.css"
+import "../styles/AudioUpload.css"
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 
@@ -8,7 +9,6 @@ mutation($name: String!, $title: String!, $file: Upload!) {
   uploadAudio(name: $name, title: $title, file: $file)
 }
 `
-
 
 class RecordSound extends Component {
 
@@ -61,7 +61,6 @@ class RecordSound extends Component {
                 let newFile = this.blobToFile(audioBlob, "new.mp3");
                 this.setState({file: newFile});
                 const audioUrl = URL.createObjectURL(audioBlob);
-                const audio = new Audio(audioUrl);
                 audioPlayer.src = audioUrl;
                 audioPlayer.controls = true;
             });
@@ -70,6 +69,7 @@ class RecordSound extends Component {
     });
     }
 
+    // This function taken from https://stackoverflow.com/questions/27159179/how-to-convert-blob-to-file-in-javascript/29390393
     blobToFile(theBlob, fileName){
         theBlob.lastModifiedDate = new Date();
         theBlob.name = fileName;

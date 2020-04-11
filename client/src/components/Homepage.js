@@ -10,7 +10,11 @@ class Homepage extends Component {
 
 
     render() {
-        return ("This is the homepage")
+        const loggedIn = localStorage.getItem('currentUser');
+        return (
+            <div id="greeting">{loggedIn ? "Welcome " + loggedIn + "!" : 
+            "Welcome to The Audio App! Create an account to get started"}</div>
+            )
     }
 
 }

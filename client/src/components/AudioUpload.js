@@ -13,7 +13,6 @@ mutation($name: String!, $title: String!, $file: Upload!) {
 }
 `
 
-
 class AudioUpload extends Component {
 
     state = {
@@ -29,13 +28,9 @@ class AudioUpload extends Component {
         }
     }
 
-    playAudio() {
-        const myAudio = new Audio("./water.mp3");
-        myAudio.play();
-    }
-
 
     render() {
+
         const { currentFile } = this.state
         const state = this.props.location.state
         let user = ''
@@ -45,29 +40,34 @@ class AudioUpload extends Component {
 
         return (
         <div id="audio_container">
-            <div id="audio_title">Create a new recording</div>
+
+            <div id="audio_title">Upload and listen to your audio here!</div>
 
             <div id="audio_content">
-                <div id="upload_area">Upload audio here:
-                    <input type="text" name ="title" className="field" placeholder="Name this file" id="file_name"
-                    onChange={e => this.setState({ currentTitle: e.target.value })} required/>
-                    <input type="file" name="audio" className="field" id="audio_file" accept="audio/*" 
-                    onChange={e => this.setState({ currentFile: e.target.files[0] })} required/>
-                    <div>
-                    <Mutation
-                        mutation={UPLOAD_AUDIO}
-                        variables={{name: localStorage.getItem("currentUser"), title: this.state.currentTitle, file: this.getFile()}}
-                        onError={err => console.log(err)}
-                    >
-                        {mutation => (
-                            <div className="pointer mr2 button" onClick={mutation}>{"Add"}</div>)}
-                    </Mutation>
-                        
+                <div id="upload_area">
+                You can upload an audio file here:
+                    <div id="file_uploads">
+                        <input type="text" name ="title" className="field" placeholder="Name this file" id="file_name"
+                        onChange={e => this.setState({ currentTitle: e.target.value })} required/>
+                        <input type="file" name="audio" className="field" id="audio_file" accept="audio/*" 
+                        onChange={e => this.setState({ currentFile: e.target.files[0] })} required/>
+                    
+                        <div>
+                        <Mutation
+                            mutation={UPLOAD_AUDIO}
+                            variables={{name: localStorage.getItem("currentUser"), title: this.state.currentTitle, file: this.getFile()}}
+                            onError={err => console.log(err)}>
+                            {mutation => (<div className="upload_button" onClick={mutation}>{"Upload!"}</div>)}
+                        </Mutation>    
+                        </div>
                     </div>
+
                 <RecordSound></RecordSound>
+
                 </div>
+
                 <div id="recordings">My Recordings:
-                <Recordings user={user}></Recordings>
+                    <Recordings user={user}></Recordings>
                 </div>
                 
             </div>

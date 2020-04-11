@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 const { APP_SECRET, getUserId } = require('../utils')
 const {createWriteStream} = require("fs")
+const validator = require('validator');
 
 let {users, audio} = require("./Database.js")
 
@@ -16,7 +16,6 @@ const storeUpload = ({stream, uniqueFileName}) =>
 
 
 async function uploadAudio(parent, {name, title, file}) {
-  console.log(file);
   const fileTitle = await title;
   const owner = await name;
   const uniqueFileName = await owner + fileTitle + ".mp3"
@@ -32,7 +31,6 @@ async function uploadAudio(parent, {name, title, file}) {
   }
 
   else {
-    console.log("ay bruh im storing")
     // Store the file in the db
     await storeUpload({stream, uniqueFileName});
     await audio.insert({owner: owner, title: fileTitle, filename: uniqueFileName})
@@ -41,6 +39,8 @@ async function uploadAudio(parent, {name, title, file}) {
 
   
 }
+
+// Null return == Success
 
 async function addFriend(parent, args, context) {
   const username = args.username;
@@ -103,35 +103,6 @@ async function signup(parent, args, context) {
   return null
 }
 
-// async function signup(parent, args, context) {
-//   const password = await bcrypt.hash(args.password, 10);
-//   const username = args.name;
-//   const email = args.email;
-
-//   users.findOne({_id: username}, function(err, user) {
-//     if (err) {
-//       throw new Error('Something went wrong...')
-//     }
-//     if (user) {
-//       console.log("I found an error")
-//       return [
-//         {
-//           path: "username",
-//           message: "username " + username + " already taken"
-//         }
-//       ]
-//     }
-//     users.update({_id: username},{_id: username, hash: password, email: email}, {upsert: true}, function(err){
-//       if (err) {
-//         throw new Error('Something went wrong...')
-//       }
-//     //const token = jwt.sign({ userId: username }, APP_SECRET)
-  
-//       return null
-//     })
-//   })  
-// }
-
 async function login(parent, args, context) {
 
   const user = await users.findOne({username: args.username})
@@ -147,28 +118,9 @@ async function login(parent, args, context) {
   }
 
   else {
-    // Authenticate user
-    //await users.insert({_id: username, hash: password, email: email})
     return null
   }
 }
-
-//   return null
-//   const user = await context.prisma.user({ email: args.email })
-//   if (!user) {
-//     throw new Error('No such user found')
-//   }
-
-//   const valid = await bcrypt.compare(args.password, user.password)
-//   if (!valid) {
-//     throw new Error('Invalid password')
-//   }
-
-//   return {
-//     token: jwt.sign({ userId: user.id }, APP_SECRET),
-//     user,
-//   }
-// }
 
 
 module.exports = {

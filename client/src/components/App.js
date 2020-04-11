@@ -1,23 +1,24 @@
 import React, { Component } from 'react'
 import Header from './Header'
 import { Switch, Route } from 'react-router-dom'
+import "../styles/App.css"
+
+//Components
 import Login from './Login'
 import AudioUpload from './AudioUpload'
 import Homepage from './Homepage'
-import Recordings from './Recordings'
 import AudioFeed from './AudioFeed'
 import Friends from './Friends'
 import Profile from './Profile'
 import AddFriend from './AddFriend'
 import EditSound from './EditSound'
-import RecordSound from './RecordSound'
 
 class App extends Component {
   render() {
     return (
-      <div className="center w85">
+      <div id="main">
         <Header />
-        <div className="ph3 pv1 background-gray">
+        <div >
           <Switch>
           <Route exact path="/" component={Homepage} />
             <Route exact path="/upload" component={AudioUpload} />
@@ -25,7 +26,6 @@ class App extends Component {
             <Route exact path="/friends" component={Friends}/>
             <Route exact path="/addfriend" component={AddFriend}/>
             <Route exact path="/edit" component={EditSound}/>
-            <Route exact path="/record" component={RecordSound}/>
             <Route exact path="/profile" component={Profile}/>
             <Route exact path="/login" component={Login} />
           </Switch>
