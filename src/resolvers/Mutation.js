@@ -16,12 +16,11 @@ const storeUpload = ({stream, uniqueFileName}) =>
 
 
 async function uploadAudio(parent, {name, title, file}) {
+  console.log(file);
   const fileTitle = await title;
   const owner = await name;
   const uniqueFileName = await owner + fileTitle + ".mp3"
-  const { createReadStream, filename, mimetype } = await file;
-  const stream = createReadStream()
-
+  const { stream, filename, mimetype } = await file;
   // Check if user already has a file with this name
   // This will currently throw an error and crash the server if user
   // tries to upload multiple files with the same name, the issue
@@ -33,6 +32,7 @@ async function uploadAudio(parent, {name, title, file}) {
   }
 
   else {
+    console.log("ay bruh im storing")
     // Store the file in the db
     await storeUpload({stream, uniqueFileName});
     await audio.insert({owner: owner, title: fileTitle, filename: uniqueFileName})

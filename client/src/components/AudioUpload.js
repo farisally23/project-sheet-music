@@ -3,7 +3,8 @@ import "../styles/AudioUpload.css"
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 import ReactAudioPlayer from 'react-audio-player';
-import Recordings from './Recordings'
+import Recordings from './Recordings';
+import RecordSound from './RecordSound';
 
 
 const UPLOAD_AUDIO = gql`
@@ -56,7 +57,6 @@ class AudioUpload extends Component {
                     <Mutation
                         mutation={UPLOAD_AUDIO}
                         variables={{name: localStorage.getItem("currentUser"), title: this.state.currentTitle, file: this.getFile()}}
-                        onCompleted={data => this.props.history.push(`/upload`)}
                         onError={err => console.log(err)}
                     >
                         {mutation => (
@@ -64,6 +64,7 @@ class AudioUpload extends Component {
                     </Mutation>
                         
                     </div>
+                <RecordSound></RecordSound>
                 </div>
                 <div id="recordings">My Recordings:
                 <Recordings user={user}></Recordings>

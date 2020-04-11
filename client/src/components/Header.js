@@ -38,19 +38,15 @@ class Header extends Component {
                     add friend
                   </Link>
                 </div>
+                <div className="flex">
+                  <div className="ml1">|</div>
+                  <Link to="/record" className="ml1 no-underline black">
+                    record
+                  </Link>
+                </div>
             </div>
 
-            <div>
-              {loggedIn ? (
-                // If authenticated, show a welcome message
-                <div className="ml1 pointer black">
-                  Hi {loggedIn}
-                </div>
-                // Else, show nothing
-              ) : (
-                <div></div>
-              )}
-            </div>
+
 
             <div className="flex flex-fixed">
               {loggedIn ? (

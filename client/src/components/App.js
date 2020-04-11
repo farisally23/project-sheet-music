@@ -10,6 +10,7 @@ import Friends from './Friends'
 import Profile from './Profile'
 import AddFriend from './AddFriend'
 import EditSound from './EditSound'
+import RecordSound from './RecordSound'
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
             <Route exact path="/friends" component={Friends}/>
             <Route exact path="/addfriend" component={AddFriend}/>
             <Route exact path="/edit" component={EditSound}/>
+            <Route exact path="/record" component={RecordSound}/>
             <Route exact path="/profile" component={Profile}/>
             <Route exact path="/login" component={Login} />
           </Switch>
