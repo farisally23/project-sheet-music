@@ -41,7 +41,7 @@ class AudioUpload extends Component {
         return (
         <div id="audio_container">
 
-            <div id="audio_title">Upload and listen to your audio here!</div>
+            <h3 id="audio_title">Upload and listen to your audio!</h3>
 
             <div id="audio_content">
                 <div id="upload_area">
@@ -62,6 +62,7 @@ class AudioUpload extends Component {
                         </div>
                     </div>
 
+                
                 <RecordSound></RecordSound>
 
                 </div>

@@ -39,12 +39,17 @@ class RecordSound extends Component {
             const mediaRecorder = new MediaRecorder(stream);
             const audioPlayer = document.getElementById('recordedAudio');
 
+            const startButton = document.getElementById('record');
+            startButton.innerHTML = "Recording..."
+
+
             // Stop recording when user clicks the stop button
             let stopButton = document.getElementById('stopRecord');
             stopButton.addEventListener("click", () => {
                 if (mediaRecorder.state == 'recording') {
                     mediaRecorder.stop();
                 } 
+                startButton.innerHTML = "Record"
             });
 
             // Start recording and save audio
@@ -62,6 +67,7 @@ class RecordSound extends Component {
                 this.setState({file: newFile});
                 const audioUrl = URL.createObjectURL(audioBlob);
                 audioPlayer.src = audioUrl;
+                audioPlayer.type = "audio/mpeg"
                 audioPlayer.controls = true;
             });
 
@@ -81,34 +87,35 @@ class RecordSound extends Component {
 
         return (
         <div>
-            <h2>Record</h2>
-
+            <div id="record_header">Or you can record yourself here:</div>
             <div>
-                <button id='record' onClick={this.recordAndSave}></button>
+                <button id='record' onClick={this.recordAndSave}>Record</button>
                 <button id='stopRecord'>Stop</button>
             </div>
 
-            <div>
-                <div id='recordingHeader' style={visible}>{this.recordingHeader}</div>
-                <audio id='recordedAudio'></audio>
-                <div id='recordingOptions' style={visible}>
+            <div id="recorded_audio" style={visible}>
+                <div id="audio_section">
+                    <div id='recordingHeader'>{this.recordingHeader}</div>
+                    <audio id='recordedAudio'></audio>
+                </div>
+                
 
-                <div>
-                    <form>
-                        <input type="text" placeholder="Give this recording a name"
-                        onChange={e => this.setState({ recordingName: e.target.value })} required/>
-                    </form>
+                <div id='recordingOptions'>
+                    <input type="text" className="field" placeholder="Give this recording a name"
+                    onChange={e => this.setState({ recordingName: e.target.value })} required/>
+
+                    <br></br>
 
                     <Mutation
+                    className="field"
                         mutation={UPLOAD_AUDIO}
                         variables={{name: localStorage.getItem("currentUser"), title: this.state.recordingName, file: this.state.file}}
                         onError={err => console.log(err)}>
-                        {mutation => (<div className="pointer mr2 button" onClick={mutation}>{"Click to Save!"}</div>)}
+                        {mutation => (<div className="upload_button" onClick={mutation}>{"Click to Save!"}</div>)}
                     </Mutation>
                     
-                    <div>Or press "Record" to record again</div>
+                    <div id="record_tip">Or press "Record" to record again</div>
                 </div>
-            </div>
         
             </div>
         </div>  

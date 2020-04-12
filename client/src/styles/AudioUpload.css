@@ -24,6 +24,10 @@
     flex-direction: row;
 }
 
+#record_header {
+    padding-top:20%;
+}
+
 #upload_area {
     display: flex;
     flex-direction: column;

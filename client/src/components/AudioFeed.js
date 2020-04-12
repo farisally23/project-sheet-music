@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import "../styles/AudioUpload.css"
+import "../styles/AudioFeed.css"
 import { Mutation, Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import AudioElement from './AudioElement'
@@ -35,9 +35,9 @@ class AudioFeed extends Component {
               return (
                 <div>
                   {allAudio.map(file => 
-                  <div key={file._id}>
+                  <div id="poster" key={file._id}>
                     <AudioElement file={file}/>
-                    Posted by {file.owner}
+                    Posted by: {file.owner}
                   </div>)}
                 </div>
               )

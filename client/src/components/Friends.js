@@ -4,6 +4,7 @@ import { Query } from 'react-apollo'
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import gql from 'graphql-tag'
 import Profile from './Profile'
+import AddFriend from './AddFriend'
 
 
 const GET_FRIENDS = gql`
@@ -26,6 +27,7 @@ class Friends extends Component {
 
     render() {
         return (
+          <div>
             <Query query={GET_FRIENDS}
             variables={{username: localStorage.getItem('currentUser')}}>
             {({ loading, error, data }) => {
@@ -46,6 +48,10 @@ class Friends extends Component {
               )
             }}
           </Query>
+
+            <h3> Add Friend</h3>
+          <AddFriend></AddFriend>
+        </div>
         )
     }
 
