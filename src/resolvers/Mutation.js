@@ -1,5 +1,4 @@
 const bcrypt = require('bcryptjs')
-const { APP_SECRET, getUserId } = require('../utils')
 const {createWriteStream} = require("fs")
 const validator = require('validator');
 
@@ -16,10 +15,11 @@ const storeUpload = ({stream, uniqueFileName}) =>
 
 
 async function uploadAudio(parent, {name, title, file}) {
-  const fileTitle = await title;
-  const owner = await name;
+  const fileTitle = await validator.escape(title);
+  const owner = await validator.escape(name);
   const uniqueFileName = await owner + fileTitle + ".mp3"
   const { stream, filename, mimetype } = await file;
+
   // Check if user already has a file with this name
   // This will currently throw an error and crash the server if user
   // tries to upload multiple files with the same name, the issue
@@ -43,8 +43,8 @@ async function uploadAudio(parent, {name, title, file}) {
 // Null return == Success
 
 async function addFriend(parent, args, context) {
-  const username = args.username;
-  const friend = args.friend;
+  const username = await validator.escape(args.username);
+  const friend = await validator.escape(args.friend);
 
 
   // Check if user exists
@@ -80,9 +80,9 @@ async function addFriend(parent, args, context) {
 
 
 async function signup(parent, args, context) {
-  const password = await bcrypt.hash(args.password, 10);
-  const username = args.username;
-  const email = args.email;
+  const password = await bcrypt.hash(await validator.escape(args.password), 10);
+  const username = await validator.escape(args.username);
+  const email = await validator.escape(args.email);
 
   let user = await users.findOne({username: username})
 
@@ -105,8 +105,11 @@ async function signup(parent, args, context) {
 
 async function login(parent, args, context) {
 
-  const user = await users.findOne({username: args.username})
-  const valid = await bcrypt.compare(args.password, user.hash)
+  const username = await validator.escape(args.username)
+  const password = await validator.escape(args.password)
+
+  const user = await users.findOne({username: username})
+  const valid = await bcrypt.compare(password, user.hash)
 
   if (!valid) {
     return [

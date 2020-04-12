@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import "../styles/AudioUpload.css"
-import { Mutation, Query } from 'react-apollo'
+import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import AudioElement from './AudioElement'
 
@@ -15,11 +15,6 @@ query($username: String!) {
 }
 `
 
-// THIS IS HOW TO PLAY AUDIO
-/* <audio ref={(green) => { this.green = green; }}>
-              <source src={`${require('../uploads/water.mp3')}`} type="audio/mpeg" >
-              </source>
-          </audio> */
 class Recordings extends Component {
     
     state = {}

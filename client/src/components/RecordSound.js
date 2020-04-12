@@ -46,7 +46,7 @@ class RecordSound extends Component {
             // Stop recording when user clicks the stop button
             let stopButton = document.getElementById('stopRecord');
             stopButton.addEventListener("click", () => {
-                if (mediaRecorder.state == 'recording') {
+                if (mediaRecorder.state === 'recording') {
                     mediaRecorder.stop();
                 } 
                 startButton.innerHTML = "Record"

@@ -10,7 +10,6 @@ import Homepage from './Homepage'
 import AudioFeed from './AudioFeed'
 import Friends from './Friends'
 import Profile from './Profile'
-import AddFriend from './AddFriend'
 import EditSound from './EditSound'
 import UserProfile from './UserProfile'
 

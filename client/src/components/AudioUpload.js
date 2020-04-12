@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import "../styles/AudioUpload.css"
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
-import ReactAudioPlayer from 'react-audio-player';
 import Recordings from './Recordings';
 import RecordSound from './RecordSound';
 
@@ -30,8 +29,7 @@ class AudioUpload extends Component {
 
 
     render() {
-
-        const { currentFile } = this.state
+        
         const state = this.props.location.state
         let user = ''
         if (state !== undefined) {

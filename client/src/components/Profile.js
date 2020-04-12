@@ -1,8 +1,4 @@
 import React, { Component } from 'react'
-import "../styles/AudioUpload.css"
-import { Query } from 'react-apollo'
-import { Link } from 'react-router-dom'
-import gql from 'graphql-tag'
 import Recordings from './Recordings'
 
 

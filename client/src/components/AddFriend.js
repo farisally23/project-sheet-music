@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import "../styles/AudioUpload.css"
 import { Mutation } from 'react-apollo'
-import { Link } from 'react-router-dom'
 import gql from 'graphql-tag'
-import { useMutation } from '@apollo/react-hooks';
 
 
 const ADD_FRIEND = gql`

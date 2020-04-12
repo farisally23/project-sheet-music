@@ -4,12 +4,10 @@ const Mutation = require('./src/resolvers/Mutation')
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
-//const User = require('./resolvers/User')
 
 const resolvers = {
   Query,
-  Mutation,
-  //User,
+  Mutation
 }
 
 const server = new GraphQLServer({
@@ -38,5 +36,3 @@ let config = {
 
 
 server.start({https: config}, () => console.log(`Server is running on https://localhost:4000`))
-
-//server.start({}, () => console.log(`Server is running on https://localhost:4000`))

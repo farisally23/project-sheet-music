@@ -1,8 +1,4 @@
 import React, { Component } from 'react'
-import "../styles/Friends.css"
-import { Query } from 'react-apollo'
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
-import gql from 'graphql-tag'
 import AddFriend from './AddFriend'
 import Recordings from './Recordings'
 
