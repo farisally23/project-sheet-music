@@ -1,5 +1,48 @@
 # C09 Project GraphQL Documentation
 
+
+## Type Definitions
+
+### User
+- description: A user for the application
+    - id: The users ID in the database
+    - username: The users username
+    - email: The users email
+<pre><code>
+type User {
+  _id: ID!
+  username: String!
+  email: String!
+}
+</code></pre>
+
+### UploadedFile
+- description: Representation of a file in the backend
+    - id: The files ID in the database
+    - title: The title the user gave the file
+    - owner: The user who uploaded the file
+    - filename: The unique filename of this file
+<pre><code>
+type UploadedFile {
+  _id: String!
+  title: String!
+  owner: String!
+  filename: String!
+}
+</code></pre>
+
+
+### Error
+- description: An occurence of something bad in the backend
+     - path: The location where the error took place
+     - message: A description of what went wrong
+<pre><code>
+type Error {
+  path: String!
+  message: String!
+}
+</code></pre>
+
 ## Queries
  
 
