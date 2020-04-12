@@ -12,7 +12,7 @@ Unfortunately, uploading the audio, which is arguably the main point of the appl
 
 ## Video
 
-The video of our demo can be found [here] (https://www.youtube.com/watch?v=vx0iB2pCHhk)
+The video of our demo can be found [here](https://www.youtube.com/watch?v=vx0iB2pCHhk)
 
 ```
 https://www.youtube.com/watch?v=vx0iB2pCHhk
@@ -20,4 +20,4 @@ https://www.youtube.com/watch?v=vx0iB2pCHhk
 
 ## Documentation
 
-The documentation of our API can be found [here] (https://github.com/farisally23/project-sheet-music/blob/master/doc/APIdocumentation.md), in the doc folder of this repository. 
+The documentation of our API can be found [here](https://github.com/farisally23/project-sheet-music/blob/master/doc/APIdocumentation.md), in the doc folder of this repository. 
