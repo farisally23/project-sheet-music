@@ -6,7 +6,14 @@
 ### getUsersFriends
 - description: retrieve a list of the users friends
 - request: 
-<pre><code>This is a code block.
+<pre><code>
+query {
+  getUsersFriends(username: String!) {
+    _id: String!
+    username: String!
+    email: String!
+  }
+}
 </code></pre>
 - content-type: `application/json`
 - response: 200
