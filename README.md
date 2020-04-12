@@ -159,3 +159,33 @@ $ curl --location --request POST 'http://localhost:4000/' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"mutation {signup(username: \"newguy\", email: \"newguy@gmail.com\"  password: \"newguy\") {path message}}","variables":{}}'
 ``` 
+
+### addFriend
+- description: add another user as a friend
+- request:
+    - content-type: `application/json`
+<pre><code>
+mutation {
+  addFriend(username: String!, friend: String!) {
+     path
+     message
+  }
+}
+</code></pre>
+
+- response: 200
+    - content-type: `application/json`
+    - data: return an error if one occured, otherwise null return (friend added successfully)
+<pre><code>
+{
+"data": {
+    "addFriend": [Error!]
+  }
+}
+</code></pre>
+- Curl Example:
+``` 
+$ curl --location --request POST 'http://localhost:4000/' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query": "mutation {addFriend(username: \"newguy\" friend:\"new\") {path message}}","variables":{}}'
+``` 
