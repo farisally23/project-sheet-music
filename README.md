@@ -189,3 +189,26 @@ $ curl --location --request POST 'http://localhost:4000/' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query": "mutation {addFriend(username: \"newguy\" friend:\"new\") {path message}}","variables":{}}'
 ``` 
+
+### uploadAudio
+- description: upload audio data to the server
+- request:
+    - content-type: `application/json`
+<pre><code>
+mutation {
+  uploadAudio(name: String!, title: String!, file: Upload!) {
+     Boolean
+  }
+}
+</code></pre>
+
+- response: 200
+    - content-type: `application/json`
+    - data: return an error if one occured, otherwise null return (friend added successfully)
+<pre><code>
+{
+"data": {
+    "uploadAudio": Boolean
+  }
+}
+</code></pre> 
