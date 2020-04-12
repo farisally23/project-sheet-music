@@ -2,10 +2,10 @@
 
 ## App URL
 
-The app is hosted here:
+The app is hosted [here](https://c09-audio-app.herokuapp.com/):
 
 ```
-
+https://c09-audio-app.herokuapp.com/
 ```
 
 Unfortunately, uploading the audio, which is arguably the main point of the application, is not working correctly in the production environment. Hopefully this feature can be tested locally, but everything else works fine. Here is how to run the code locally:
