@@ -18,8 +18,16 @@ query {
 - content-type: `application/json`
 - response: 200
     - content-type: `application/json`
-    - body: list of objects
-      - _id: (string) the user id
+    - data: list of users
+<pre><code>
+query {
+  getUsersFriends(username: String!) {
+    _id: String!
+    username: String!
+    email: String!
+  }
+}
+</code></pre>
 ``` 
 $ curl --location --request GET 'http://localhost:3000/api/users/1' \
 --header 'Content-Type: application/json' \
