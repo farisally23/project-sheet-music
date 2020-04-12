@@ -5,8 +5,8 @@
 
 ### getUsersFriends
 - description: retrieve a list of the users friends
-- request: 
- - content-type: `application/json`
+- request:
+    - content-type: `application/json`
 <pre><code>
 query {
   getUsersFriends(username: String!) {
