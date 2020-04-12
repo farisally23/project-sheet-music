@@ -20,11 +20,9 @@ query {
     - content-type: `application/json`
     - data: list of users
 <pre><code>
-query {
-  getUsersFriends(username: String!) {
-    _id: String!
-    username: String!
-    email: String!
+{
+"data": {
+    "getUsersFriends": [User!]
   }
 }
 </code></pre>
