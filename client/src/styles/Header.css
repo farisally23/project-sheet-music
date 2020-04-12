@@ -1,0 +1,43 @@
+#header {
+    display: flex;
+    flex-direction: row;
+    background-color: gainsboro;
+    height: 125px;
+    width: 100%;
+    align-items: center;
+    border-bottom: 1px solid;
+    border-color: grey;
+}
+
+#title {
+    display: flex;
+    width:200px;
+    height:200px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:100%;
+    background-image: url('../media/appTitle.png');
+}
+
+#routes {
+    display: flex;
+    flex-direction: row;
+    padding-left: 2%;
+}
+
+.route {
+    padding-left: 20px;
+    padding-right: 10px;
+    color: dodgerblue;
+    text-decoration: none;
+    font-size: large;
+}
+
+.route:hover{
+    color: blueviolet;
+    cursor: pointer;
+
+}
+#login_logout {
+    margin-left: auto;
+}
