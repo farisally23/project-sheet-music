@@ -28,6 +28,10 @@ class Header extends Component {
                     Friends
                   </Link>
 
+                  <Link to="/myprofile" className="route">
+                    Profile
+                  </Link>
+
 
             </div>
 

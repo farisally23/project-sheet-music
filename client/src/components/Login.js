@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import { AUTH_TOKEN } from '../constants'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 import "../styles/Login.css"
+
+
+//This tutorial followed in creation of this component: https://www.howtographql.com/react-apollo/5-authentication/
+
 
 const SIGNUP_MUTATION = gql`
   mutation SignupMutation($email: String!, $password: String!, $username: String!) {
@@ -35,8 +38,10 @@ class Login extends Component {
   render() {
     const { login, email, password, username } = this.state
     return (
+
       <div>
         <h4 className="mv3">{login ? 'Login' : 'Sign Up'}</h4>
+
         <div className="flex flex-column">
           <div id="error_box"></div>
           <input
@@ -60,32 +65,28 @@ class Login extends Component {
             placeholder="Choose a safe password"
           />
         </div>
+
         <div className="flex mt3">
-        <Mutation
-    mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
-    variables={{ email, password, username }}
-    onCompleted={login ? data => this._handleLogIn(data) : data => this._handleSignUp(data)}
-    onError={error => this.setState({error: "Error"})}
-    >
-    {mutation => (
-      <div className="pointer mr2 button" onClick={mutation}>
-        {login ? 'login' : 'create account'}
-      </div>
-    )}
-  </Mutation>
-  <div
-    className="pointer button"
-    onClick={() => this.setState({ login: !login })}
-  >
-    {login ? 'need to create an account?' : 'already have an account?'}
-  </div>
+          <Mutation
+            mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
+            variables={{ email, password, username }}
+            onCompleted={login ? data => this._handleLogIn(data) : data => this._handleSignUp(data)}
+            onError={error => this.setState({error: "Error"})}>
+            {mutation => ( <div className="pointer mr2 button" onClick={mutation}> {login ? 'login' : 'create account'}</div>)}
+          </Mutation>
+
+          <div
+            className="pointer button"
+            onClick={() => this.setState({ login: !login })}>
+            {login ? 'need to create an account?' : 'already have an account?'}
+          </div>
+
         </div>
       </div>
     )
   }
 
   _handleLogIn = async data => {
-    console.log(data);
     if(!data.login) {
       //TEMPORARY SOLUTION, NEED TO CHANGE ONCE SESSISONS ARE INTRODUCED
       localStorage.setItem('currentUser', this.state.username);
@@ -101,7 +102,6 @@ class Login extends Component {
   }
 
   _handleSignUp = async data => {
-    console.log(data);
     if(!data.signup) {
       //TEMPORARY SOLUTION, NEED TO CHANGE ONCE SESSISONS ARE INTRODUCED
       localStorage.setItem('currentUser', this.state.username);
@@ -114,17 +114,6 @@ class Login extends Component {
 
     }
 
-  }
-
-
-  _confirm = async data => {
-    // const { token } = this.state.login ? data.login : data.signup
-    // this._saveUserData(token)
-    this.props.history.push(`/`)
-  }
-
-  _saveUserData = token => {
-    localStorage.setItem(AUTH_TOKEN, token)
   }
 }
 

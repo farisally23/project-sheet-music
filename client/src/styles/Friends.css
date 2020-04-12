@@ -1,0 +1,12 @@
+#friend_container {
+    margin-left: 1%;
+}
+
+.friend_name {
+    font-size: larger;
+    padding-bottom: 10px;
+}
+
+.friend_link {
+    padding-left: 10px;
+}

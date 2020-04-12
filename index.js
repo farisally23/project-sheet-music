@@ -28,16 +28,15 @@ server.express.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'))
 })
 
-// // Configure HTTPS
-// let privateKey = fs.readFileSync( 'server.key' );
-// let certificate = fs.readFileSync( 'server.crt' );
-// let config = {
-//         key: privateKey,
-//         cert: certificate
-// };
+// Configure HTTPS
+let privateKey = fs.readFileSync( 'server.key' );
+let certificate = fs.readFileSync( 'server.crt' );
+let config = {
+        key: privateKey,
+        cert: certificate
+};
 
 
+server.start({https: config}, () => console.log(`Server is running on https://localhost:4000`))
 
-//server.start({https: config}, () => console.log(`Server is running on https://localhost:4000`))
-
-server.start({}, () => console.log(`Server is running on https://localhost:4000`))
+//server.start({}, () => console.log(`Server is running on https://localhost:4000`))

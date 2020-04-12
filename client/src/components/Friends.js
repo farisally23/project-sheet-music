@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import "../styles/AudioUpload.css"
+import "../styles/Friends.css"
 import { Query } from 'react-apollo'
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import gql from 'graphql-tag'
-import Profile from './Profile'
 import AddFriend from './AddFriend'
 
 
@@ -27,7 +26,7 @@ class Friends extends Component {
 
     render() {
         return (
-          <div>
+          <div id="friend_container">
             <Query query={GET_FRIENDS}
             variables={{username: localStorage.getItem('currentUser')}}>
             {({ loading, error, data }) => {
@@ -40,17 +39,14 @@ class Friends extends Component {
                 <div>
                     <h2>My Friends:</h2>
                   {friends.map(friend => 
-                <div key={friend._id}>{friend.username}
-                  <Link to={{pathname: "/profile", state: {user: friend.username}}} user={friend._id}>View Profile</Link>
+                <div className="friend_name" key={friend._id}>{friend.username}
+                  <Link className="friend_link" to={{pathname: "/profile", state: {user: friend.username}}} user={friend._id}>View Profile</Link>
                 </div>
                     )}
                 </div>
               )
             }}
           </Query>
-
-            <h3> Add Friend</h3>
-          <AddFriend></AddFriend>
         </div>
         )
     }
