@@ -9,12 +9,11 @@ The app is hosted here:
 ```
 
 Unfortunately, uploading the audio, which is arguably the main point of the application, is not working correctly in the production environment. Hopefully this feature can be tested locally, but everything else works fine. Here is how to run the code locally:
-1. Install yarn, if not installed already
-2. Checkout the code from the repo, and make a new branch if developing
-3. Navigate into the project folder, and run `yarn install` to install the dependencies
-4. Then navigate into the server folder, and run `yarn install` to install the backend dependencies
-5. In the server folder, run `yarn start`. This should start the server on localhost:4000, and will open a GraphQL playground where queries can be executed.
-6. Open another terminal, and in the main project folder, run `yarn start`, this will start the app on localhost:3000.
+1. Checkout the code from the repo.
+2. From the project folder, and run `yarn install (or npm install)` to install the backend dependencies
+3. Run `yarn start (or npm start)` to start the server
+4. From a seperate terminal, navigate into the "client" folder (project-sheet-music/client), and run `yarn install (or npm install)` to install the frontend dependencies
+5. In the client folder, run `yarn start (or npm start)` to start the application
 
 
 ## Video
