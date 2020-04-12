@@ -100,3 +100,62 @@ $ curl --location --request POST 'http://localhost:4000/' \
 
 ## Mutations
 
+### login
+- description: log the user into the application
+- request:
+    - content-type: `application/json`
+<pre><code>
+mutation {
+  login(username: String!, password: String!) {
+     path
+     message
+  }
+}
+</code></pre>
+
+- response: 200
+    - content-type: `application/json`
+    - data: return an error if one occured, otherwise null return
+<pre><code>
+{
+"data": {
+    "login": [Error!]
+  }
+}
+</code></pre>
+- Curl Example:
+``` 
+$ curl --location --request POST 'http://localhost:4000/' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"mutation { login (username: \"new\", password: \"new\") {path message}}","variables":{}}'
+``` 
+
+### signup
+- description: signup for the application
+- request:
+    - content-type: `application/json`
+<pre><code>
+mutation {
+  signup(username: String!, email: String!, password: String!) {
+     path
+     message
+  }
+}
+</code></pre>
+
+- response: 200
+    - content-type: `application/json`
+    - data: return an error if one occured, otherwise null return
+<pre><code>
+{
+"data": {
+    "signup": [Error!]
+  }
+}
+</code></pre>
+- Curl Example:
+``` 
+$ curl --location --request POST 'http://localhost:4000/' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"mutation {signup(username: \"newguy\", email: \"newguy@gmail.com\"  password: \"newguy\") {path message}}","variables":{}}'
+``` 
