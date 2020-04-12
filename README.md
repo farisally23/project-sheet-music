@@ -27,7 +27,7 @@ query {
   }
 }
 </code></pre>
--Curl Example:
+- Curl Example:
 ``` 
 $ curl --location --request POST 'http://localhost:4000/' \
 --header 'Content-Type: application/json' \
@@ -59,7 +59,7 @@ query {
   }
 }
 </code></pre>
--Curl Example:
+- Curl Example:
 ``` 
 $ curl --location --request POST 'http://localhost:4000/' \
 --header 'Content-Type: application/json' \
@@ -91,7 +91,7 @@ query {
   }
 }
 </code></pre>
--Curl Example:
+- Curl Example:
 ``` 
 $ curl --location --request POST 'http://localhost:4000/' \
 --header 'Content-Type: application/json' \
