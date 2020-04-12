@@ -26,9 +26,11 @@ query {
   }
 }
 </code></pre>
+-Curl Example:
 ``` 
-$ curl --location --request GET 'http://localhost:3000/api/users/1' \
+$ curl --location --request POST 'http://localhost:4000/' \
 --header 'Content-Type: application/json' \
+--data-raw '{"query":"query { getUsersFriends(username: \"new\") { _id username email}}","variables":{}}'
 ``` 
 
 ## Mutations
