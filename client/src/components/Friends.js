@@ -24,6 +24,11 @@ class Friends extends Component {
 
 
     render() {
+      (function refresh(){
+        setTimeout(function(e){
+            refresh();
+        }, 2000);
+    }());
         return (
           <div id="friend_container">
             <Query query={GET_FRIENDS}
