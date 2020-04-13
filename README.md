@@ -26,4 +26,4 @@ https://www.youtube.com/watch?v=vx0iB2pCHhk
 
 ## Documentation
 
-The documentation of our API can be found [here](https://github.com/farisally23/project-sheet-music/blob/master/doc/APIdocumentation.md), in the doc folder of this repository. 
+The documentation of our API can be found [here](https://github.com/UTSCC09/project-sheet-music/blob/master/doc/APIdocumentation.md), in the doc folder of this repository. 
